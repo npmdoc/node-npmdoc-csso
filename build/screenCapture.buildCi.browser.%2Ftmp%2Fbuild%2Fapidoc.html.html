@@ -1,4 +1,4 @@
-<div class="apidocDiv">
+<html><head></head><body><div class="apidocDiv">
 <style>
 /*csslint
 */
@@ -47,17 +47,10 @@
 }
 </style>
 <h1>api documentation for
-    <a
-
-        href="https://github.com/css/csso"
-
-    >csso (v3.0.1)</a>
+    <a href="https://github.com/css/csso">csso (v3.0.1)</a>
 </h1>
 <h4>CSSO (CSS Optimizer) is a CSS minifier with structural optimisations</h4>
-<div class="apidocSectionDiv"><a
-    href="#apidoc.tableOfContents"
-    id="apidoc.tableOfContents"
-><h1>table of contents</h1></a><ol>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.csso">module csso</a><ol>
 
@@ -2644,10 +2637,10 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function compress(ast, options) {
-    ast = ast || { type: &#x27;StyleSheet&#x27;, loc: null, children: new List() };
+    ast = ast || { type: 'StyleSheet', loc: null, children: new List() };
     options = options || {};
 
-    var logger = typeof options.logger === &#x27;function&#x27; ? options.logger : function() {};
+    var logger = typeof options.logger === 'function' ? options.logger : function() {};
     var specialComments = getCommentsOption(options);
     var restructuring = getRestructureOption(options);
     var firstAtrulesAllowed = true;
@@ -2662,7 +2655,7 @@
         ast = clone(ast);
     }
 
-    if (ast.type === &#x27;StyleSheet&#x27;) {
+    if (ast.type === 'StyleSheet') {
         inputRules = ast.children;
         ast.children = outputRules;
     } else {
@@ -2689,8 +2682,8 @@
             // add \n before comment if there is another content in outputRules
             if (!outputRules.isEmpty()) {
                 outputRules.insert(List.createItem({
-                    type: &#x27;Raw&#x27;,
-                    value: &#x27;\n&#x27;
+                    type: 'Raw',
+                    value: '\n'
                 }));
             }
 
@@ -2699,22 +2692,22 @@
             // add \n after comment if chunk is not empty
             if (!chunkRules.isEmpty()) {
                 outputRules.insert(List.createItem({
-                    type: &#x27;Raw&#x27;,
-                    value: &#x27;\n&#x27;
+                    type: 'Raw',
+                    value: '\n'
                 }));
             }
         }
 
-        if (firstAtrulesAllowed &#x26;&#x26; !chunkRules.isEmpty()) {
+        if (firstAtrulesAllowed &amp;&amp; !chunkRules.isEmpty()) {
             var lastRule = chunkRules.last();
 
-            if (lastRule.type !== &#x27;Atrule&#x27; ||
-               (lastRule.name !== &#x27;import&#x27; &#x26;&#x26; lastRule.name !== &#x27;charset&#x27;)) {
+            if (lastRule.type !== 'Atrule' ||
+               (lastRule.name !== 'import' &amp;&amp; lastRule.name !== 'charset')) {
                 firstAtrulesAllowed = false;
             }
         }
 
-        if (specialComments !== &#x27;exclamation&#x27;) {
+        if (specialComments !== 'exclamation') {
             specialComments = false;
         }
 
@@ -2732,8 +2725,8 @@ CSSO is based on [CSSTree](https://github.com/csstree/csstree) to parse CSS into
 CSS. All `CSSTree` API is available behind `syntax` field. You may minify CSS step by step:
 
 ```js
-var csso = require(&#x27;csso&#x27;);
-var ast = csso.syntax.parse(&#x27;.test { color: #ff0000; }&#x27;);
+var csso = require('csso');
+var ast = csso.syntax.parse('.test { color: #ff0000; }');
 var compressedAst = csso.<span class="apidocCodeKeywordSpan">compress</span>(ast).ast;
 var minifiedCss = csso.syntax.translate(compressedAst);
 
@@ -2741,8 +2734,8 @@ console.log(minifiedCss);
 // .test{color:red}
 ```
 
-&#x3e; Warning: CSSO uses early versions of CSSTree that still in active development. CSSO doesn&#x27;t guarantee API behind `syntax
-` field or AST format will not change in future releases of CSSO, since it&#x27;s subject to change in CSSTree. Be carefull with
+&gt; Warning: CSSO uses early versions of CSSTree that still in active development. CSSO doesn't guarantee API behind `syntax
+` field or AST format will not change in future releases of CSSO, since it's subject to change in CSSTree. Be carefull with
  CSSO updates if you use `syntax` API until this warning removal.
 ...</pre></li>
     </ul>
@@ -2757,17 +2750,17 @@ console.log(minifiedCss);
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function minifyStylesheet(source, options) {
-    return minify(&#x27;stylesheet&#x27;, source, options);
+    return minify('stylesheet', source, options);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-&#x3c;!-- /MarkdownTOC --&#x3e;
+&lt;!-- /MarkdownTOC --&gt;
 
 Basic usage:
 
 ```js
-var csso = require(&#x27;csso&#x27;);
+var csso = require('csso');
 
-var minifiedCss = csso.<span class="apidocCodeKeywordSpan">minify</span>(&#x27;.test { color: #ff0000; }&#x27;).css;
+var minifiedCss = csso.<span class="apidocCodeKeywordSpan">minify</span>('.test { color: #ff0000; }').css;
 
 console.log(minifiedCss);
 // .test{color:red}
@@ -2788,20 +2781,20 @@ CSS. All `CSSTree` API is available behind `syntax` field. You may minify CSS st
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function minifyBlock(source, options) {
-    return minify(&#x27;declarationList&#x27;, source, options);
+    return minify('declarationList', source, options);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 - Other options are the same as for [`compress()`](#compressast-options) function.
 
 ### minifyBlock(source[, options])
 
-The same as `minify()` but for list of declarations. Usually it&#x27;s a `style` attribute value.
+The same as `minify()` but for list of declarations. Usually it's a `style` attribute value.
 
 ```js
-var result = csso.<span class="apidocCodeKeywordSpan">minifyBlock</span>(&#x27;color: rgba(255, 0, 0, 1); color: #ff0000&#x27;);
+var result = csso.<span class="apidocCodeKeywordSpan">minifyBlock</span>('color: rgba(255, 0, 0, 1); color: #ff0000');
 
 console.log(result.css);
-// &#x3e; color:red
+// &gt; color:red
 ```
 
 ### compress(ast[, options])
@@ -2900,7 +2893,7 @@ console.log(result.css);
         if (structure.hasOwnProperty(node.type)) {
             structure[node.type].check(node, warns.push.bind(warns));
         } else {
-            throw new Error(&#x27;Unknown node type: &#x27; + node.type);
+            throw new Error('Unknown node type: ' + node.type);
         }
     });
 
@@ -2925,9 +2918,9 @@ console.log(result.css);
         match: null
     };
 
-    if (typeof syntax === &#x27;function&#x27;) {
+    if (typeof syntax === 'function') {
         descriptor.match = function(node) {
-            if (node &#x26;&#x26; syntax(node)) {
+            if (node &amp;&amp; syntax(node)) {
                 return {
                     badNode: null,
                     lastNode: null,
@@ -2939,10 +2932,10 @@ console.log(result.css);
             return null;
         };
     } else {
-        if (typeof syntax === &#x27;string&#x27;) {
-            Object.defineProperty(descriptor, &#x27;syntax&#x27;, {
+        if (typeof syntax === 'string') {
+            Object.defineProperty(descriptor, 'syntax', {
                 get: function() {
-                    Object.defineProperty(descriptor, &#x27;syntax&#x27;, {
+                    Object.defineProperty(descriptor, 'syntax', {
                         value: parse(syntax)
                     });
 
@@ -3024,11 +3017,11 @@ console.log(result.css);
     <li>description and source-code<pre class="apidocCodePre">syntax.Lexer.prototype.matchProperty = function (propertyName, value) {
     var property = names.property(propertyName);
 
-    // don&#x27;t match syntax for a custom property
+    // don't match syntax for a custom property
     if (property.variable) {
         return {
-            type: &#x27;NoMatch&#x27;,
-            comment: &#x27;Lexer matching doesn\&#x27;t applicable for custom properties&#x27;
+            type: 'NoMatch',
+            comment: 'Lexer matching doesn\'t applicable for custom properties'
         };
     }
 
@@ -3037,7 +3030,7 @@ console.log(result.css);
         : this.getProperty(property.name);
 
     if (!propertySyntax) {
-        this.lastMatchError = new Error(&#x27;Unknown property: &#x27; + propertyName);
+        this.lastMatchError = new Error('Unknown property: ' + propertyName);
         return null;
     }
 
@@ -3059,7 +3052,7 @@ console.log(result.css);
     var typeSyntax = this.getType(typeName);
 
     if (!typeSyntax) {
-        this.lastMatchError = new Error(&#x27;Unknown type: &#x27; + typeName);
+        this.lastMatchError = new Error('Unknown type: ' + typeName);
         return null;
     }
 
@@ -3101,12 +3094,12 @@ console.log(result.css);
         broken[name] = false;
         if (descriptor.syntax !== null) {
             walk(descriptor.syntax, function(node) {
-                if (node.type !== &#x27;Type&#x27; &#x26;&#x26; node.type !== &#x27;Property&#x27;) {
+                if (node.type !== 'Type' &amp;&amp; node.type !== 'Property') {
                     return;
                 }
 
-                var map = node.type === &#x27;Type&#x27; ? syntax.types : syntax.properties;
-                var brokenMap = node.type === &#x27;Type&#x27; ? brokenTypes : brokenProperties;
+                var map = node.type === 'Type' ? syntax.types : syntax.properties;
+                var brokenMap = node.type === 'Type' ? brokenTypes : brokenProperties;
 
                 if (!map.hasOwnProperty(node.name) || validate(syntax, node.name, brokenMap, map[node.name])) {
                     broken[name] = true;
@@ -3179,12 +3172,12 @@ console.log(result.css);
 
     // insert to end of the list
     if (this.tail !== null) {
-        // if list has a tail, then it also has a head, but head doesn&#x27;t change
+        // if list has a tail, then it also has a head, but head doesn't change
 
-        // last item -&#x3e; new item
+        // last item -&gt; new item
         this.tail.next = item;
 
-        // last item &#x3c;- new item
+        // last item &lt;- new item
         item.prev = this.tail;
     } else {
         // if list has no a tail, then it also has no a head
@@ -3235,12 +3228,12 @@ console.log(result.css);
     // insert to end of the list
     if (this.tail !== null) {
         // if destination list has a tail, then it also has a head,
-        // but head doesn&#x27;t change
+        // but head doesn't change
 
-        // dest tail -&#x3e; source head
+        // dest tail -&gt; source head
         this.tail.next = list.head;
 
-        // dest tail &#x3c;- source head
+        // dest tail &lt;- source head
         list.head.prev = this.tail;
     } else {
         // if list has no a tail, then it also has no a head
@@ -3389,7 +3382,7 @@ console.log(result.css);
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">syntax.List.prototype.first = function () {
-    return this.head &#x26;&#x26; this.head.data;
+    return this.head &amp;&amp; this.head.data;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -3408,7 +3401,7 @@ console.log(result.css);
 
     this.head = null;
 
-    for (var i = 0; i &#x3c; array.length; i++) {
+    for (var i = 0; i &lt; array.length; i++) {
         var item = createItem(array[i]);
 
         if (cursor !== null) {
@@ -3461,7 +3454,7 @@ console.log(result.css);
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">syntax.List.prototype.insert = function (item, before) {
-    if (before !== undefined &#x26;&#x26; before !== null) {
+    if (before !== undefined &amp;&amp; before !== null) {
         // prev   before
         //      ^
         //     item
@@ -3470,10 +3463,10 @@ console.log(result.css);
         if (before.prev === null) {
             // insert to the beginning of list
             if (this.head !== before) {
-                throw new Error(&#x27;before doesn\&#x27;t below to list&#x27;);
+                throw new Error('before doesn\'t below to list');
             }
 
-            // since head points to before therefore list doesn&#x27;t empty
+            // since head points to before therefore list doesn't empty
             // no need to check tail
             this.head = item;
             before.prev = item;
@@ -3521,7 +3514,7 @@ console.log(result.css);
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">syntax.List.prototype.last = function () {
-    return this.tail &#x26;&#x26; this.tail.data;
+    return this.tail &amp;&amp; this.tail.data;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -3648,7 +3641,7 @@ console.log(result.css);
         item.prev.next = item.next;
     } else {
         if (this.head !== item) {
-            throw new Error(&#x27;item doesn\&#x27;t below to list&#x27;);
+            throw new Error('item doesn\'t below to list');
         }
 
         this.head = item.next;
@@ -3658,7 +3651,7 @@ console.log(result.css);
         item.next.prev = item.prev;
     } else {
         if (this.tail !== item) {
-            throw new Error(&#x27;item doesn\&#x27;t below to list&#x27;);
+            throw new Error('item doesn\'t below to list');
         }
 
         this.tail = item.prev;
@@ -3765,7 +3758,7 @@ console.log(result.css);
     this.lines = null;
     this.columns = null;
 
-    this.setSource(source || &#x27;&#x27;, startOffset, startLine, startColumn);
+    this.setSource(source || '', startOffset, startLine, startColumn);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -3818,9 +3811,9 @@ console.log(result.css);
     <li>description and source-code<pre class="apidocCodePre">syntax.Tokenizer.prototype.eat = function (tokenType) {
     if (this.tokenType !== tokenType) {
         this.error(
-            NAME[tokenType] + &#x27; is expected&#x27;,
+            NAME[tokenType] + ' is expected',
             // when test type is part of another token show error for current position + 1
-            // e.g. eat(HYPHENMINUS) will fail on &#x22;-foo&#x22;, but pointing on &#x22;-&#x22; is odd
+            // e.g. eat(HYPHENMINUS) will fail on "-foo", but pointing on "-" is odd
             this.tokenStart + (this.source.charCodeAt(this.tokenStart) === tokenType ? 1 : 0)
         );
     }
@@ -3856,14 +3849,14 @@ console.log(result.css);
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">syntax.Tokenizer.prototype.error = function (message, offset) {
-    var location = typeof offset !== &#x27;undefined&#x27; &#x26;&#x26; offset &#x3c; this.source.length
+    var location = typeof offset !== 'undefined' &amp;&amp; offset &lt; this.source.length
         ? this.getLocation(offset)
         : this.eof
             ? findLastNonSpaceLocation(this)
             : this.getLocation(this.tokenStart);
 
     throw new CssSyntaxError(
-        message || &#x27;Unexpected input&#x27;,
+        message || 'Unexpected input',
         this.source,
         location.offset,
         location.line,
@@ -3884,7 +3877,7 @@ console.log(result.css);
     <ul>
     <li>description and source-code<pre class="apidocCodePre">syntax.Tokenizer.prototype.expectIdentifier = function (name) {
     if (this.tokenType !== IDENTIFIER || cmpStr(this.source, this.tokenStart, this.tokenEnd, name) === false) {
-        this.error(&#x27;Identifier `&#x27; + name + &#x27;` is expected&#x27;);
+        this.error('Identifier `' + name + '` is expected');
     }
 
     this.next();
@@ -3973,7 +3966,7 @@ console.log(result.css);
     <ul>
     <li>description and source-code<pre class="apidocCodePre">syntax.Tokenizer.prototype.getTypes = function () {
     return Array.prototype.slice.call(this.offsetAndType, 0, this.tokenCount).map(function(item) {
-        return NAME[item &#x3e;&#x3e; TYPE_OFFSET];
+        return NAME[item &gt;&gt; TYPE_OFFSET];
     });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -3991,8 +3984,8 @@ console.log(result.css);
     <li>description and source-code<pre class="apidocCodePre">syntax.Tokenizer.prototype.lookupNonWSType = function (offset) {
     offset += this.currentToken;
 
-    for (var type; offset &#x3c; this.tokenCount; offset++) {
-        type = this.offsetAndType[offset] &#x3e;&#x3e; TYPE_OFFSET;
+    for (var type; offset &lt; this.tokenCount; offset++) {
+        type = this.offsetAndType[offset] &gt;&gt; TYPE_OFFSET;
 
         if (type !== WHITESPACE) {
             return type;
@@ -4016,8 +4009,8 @@ console.log(result.css);
     <li>description and source-code<pre class="apidocCodePre">syntax.Tokenizer.prototype.lookupType = function (offset) {
     offset += this.currentToken;
 
-    if (offset &#x3c; this.tokenCount) {
-        return this.offsetAndType[offset] &#x3e;&#x3e; TYPE_OFFSET;
+    if (offset &lt; this.tokenCount) {
+        return this.offsetAndType[offset] &gt;&gt; TYPE_OFFSET;
     }
 
     return NULL;
@@ -4037,11 +4030,11 @@ console.log(result.css);
     <li>description and source-code<pre class="apidocCodePre">syntax.Tokenizer.prototype.lookupValue = function (offset, referenceStr) {
     offset += this.currentToken;
 
-    if (offset &#x3c; this.tokenCount) {
+    if (offset &lt; this.tokenCount) {
         return cmpStr(
             this.source,
-            this.offsetAndType[offset - 1] &#x26; OFFSET_MASK,
-            this.offsetAndType[offset] &#x26; OFFSET_MASK,
+            this.offsetAndType[offset - 1] &amp; OFFSET_MASK,
+            this.offsetAndType[offset] &amp; OFFSET_MASK,
             referenceStr
         );
     }
@@ -4063,12 +4056,12 @@ console.log(result.css);
     <li>description and source-code<pre class="apidocCodePre">syntax.Tokenizer.prototype.next = function () {
     var next = this.currentToken + 1;
 
-    if (next &#x3c; this.tokenCount) {
+    if (next &lt; this.tokenCount) {
         this.currentToken = next;
         this.tokenStart = this.tokenEnd;
         next = this.offsetAndType[next];
-        this.tokenType = next &#x3e;&#x3e; TYPE_OFFSET;
-        this.tokenEnd = next &#x26; OFFSET_MASK;
+        this.tokenType = next &gt;&gt; TYPE_OFFSET;
+        this.tokenEnd = next &amp; OFFSET_MASK;
     } else {
         this.currentToken = this.tokenCount;
         this.eof = true;
@@ -4092,9 +4085,9 @@ console.log(result.css);
     var start = firstCharOffset(source);
 
     this.source = source;
-    this.startOffset = typeof startOffset === &#x27;undefined&#x27; ? 0 : startOffset;
-    this.startLine = typeof startLine === &#x27;undefined&#x27; ? 1 : startLine;
-    this.startColumn = typeof startColumn === &#x27;undefined&#x27; ? 1 : startColumn;
+    this.startOffset = typeof startOffset === 'undefined' ? 0 : startOffset;
+    this.startLine = typeof startLine === 'undefined' ? 1 : startLine;
+    this.startColumn = typeof startColumn === 'undefined' ? 1 : startColumn;
     this.linesAnsColumnsComputed = false;
 
     this.eof = false;
@@ -4121,12 +4114,12 @@ console.log(result.css);
     <li>description and source-code<pre class="apidocCodePre">syntax.Tokenizer.prototype.skip = function (tokenCount) {
     var next = this.currentToken + tokenCount;
 
-    if (next &#x3c; this.tokenCount) {
+    if (next &lt; this.tokenCount) {
         this.currentToken = next;
-        this.tokenStart = this.offsetAndType[next - 1] &#x26; OFFSET_MASK;
+        this.tokenStart = this.offsetAndType[next - 1] &amp; OFFSET_MASK;
         next = this.offsetAndType[next];
-        this.tokenType = next &#x3e;&#x3e; TYPE_OFFSET;
-        this.tokenEnd = next &#x26; OFFSET_MASK;
+        this.tokenType = next &gt;&gt; TYPE_OFFSET;
+        this.tokenEnd = next &amp; OFFSET_MASK;
     } else {
         this.currentToken = this.tokenCount;
         this.next();
@@ -4162,13 +4155,13 @@ console.log(result.css);
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">syntax.Tokenizer.prototype.skipWS = function () {
-    for (var i = this.currentToken, skipTokenCount = 0; i &#x3c; this.tokenCount; i++, skipTokenCount++) {
-        if ((this.offsetAndType[i] &#x3e;&#x3e; TYPE_OFFSET) !== WHITESPACE) {
+    for (var i = this.currentToken, skipTokenCount = 0; i &lt; this.tokenCount; i++, skipTokenCount++) {
+        if ((this.offsetAndType[i] &gt;&gt; TYPE_OFFSET) !== WHITESPACE) {
             break;
         }
     }
 
-    if (skipTokenCount &#x3e; 0) {
+    if (skipTokenCount &gt; 0) {
         this.skip(skipTokenCount);
     }
 }</pre></li>
@@ -4265,7 +4258,7 @@ console.log(result.css);
     <li>description and source-code<pre class="apidocCodePre">syntax.fork = function (extension) {
     var base = mix({}, config); // copy of config
     return createSyntax(
-        typeof extension === &#x27;function&#x27;
+        typeof extension === 'function'
             ? extension(base, assign)
             : mix(base, extension)
     );
@@ -4284,7 +4277,7 @@ console.log(result.css);
     <ul>
     <li>description and source-code<pre class="apidocCodePre">syntax.fromPlainObject = function (ast) {
     walk(ast, function(node) {
-        if (node.children &#x26;&#x26; node.children instanceof List === false) {
+        if (node.children &amp;&amp; node.children instanceof List === false) {
             node.children = new List().fromArray(node.children);
         }
     });
@@ -4314,7 +4307,7 @@ console.log(result.css);
         return keywords[keyword] = keywords[name];
     }
 
-    var vendor = !isVariable(name, 0) ? getVendorPrefix(name, 0) : &#x27;&#x27;;
+    var vendor = !isVariable(name, 0) ? getVendorPrefix(name, 0) : '';
 
     return keywords[keyword] = Object.freeze({
         vendor: vendor,
@@ -4343,8 +4336,8 @@ CSSO is based on [CSSTree](https://github.com/csstree/csstree) to parse CSS into
 CSS. All `CSSTree` API is available behind `syntax` field. You may minify CSS step by step:
 
 ```js
-var csso = require(&#x27;csso&#x27;);
-var ast = csso.<span class="apidocCodeKeywordSpan">syntax.parse</span>(&#x27;.test { color: #ff0000; }&#x27;);
+var csso = require('csso');
+var ast = csso.<span class="apidocCodeKeywordSpan">syntax.parse</span>('.test { color: #ff0000; }');
 var compressedAst = csso.compress(ast).ast;
 var minifiedCss = csso.syntax.translate(compressedAst);
 
@@ -4371,14 +4364,14 @@ console.log(minifiedCss);
     var name = property;
     var hack = property[0];
 
-    if (hack === &#x27;/&#x27; &#x26;&#x26; property[1] === &#x27;/&#x27;) {
-        hack = &#x27;//&#x27;;
-    } else if (hack !== &#x27;_&#x27; &#x26;&#x26;
-               hack !== &#x27;*&#x27; &#x26;&#x26;
-               hack !== &#x27;$&#x27; &#x26;&#x26;
-               hack !== &#x27;#&#x27; &#x26;&#x26;
-               hack !== &#x27;+&#x27;) {
-        hack = &#x27;&#x27;;
+    if (hack === '/' &amp;&amp; property[1] === '/') {
+        hack = '//';
+    } else if (hack !== '_' &amp;&amp;
+               hack !== '*' &amp;&amp;
+               hack !== '$' &amp;&amp;
+               hack !== '#' &amp;&amp;
+               hack !== '+') {
+        hack = '';
     }
 
     var variable = isVariable(name, hack.length);
@@ -4390,7 +4383,7 @@ console.log(minifiedCss);
         }
     }
 
-    var vendor = !variable ? getVendorPrefix(name, hack.length) : &#x27;&#x27;;
+    var vendor = !variable ? getVendorPrefix(name, hack.length) : '';
 
     return properties[property] = Object.freeze({
         hack: hack,
@@ -4414,7 +4407,7 @@ console.log(minifiedCss);
     <ul>
     <li>description and source-code<pre class="apidocCodePre">syntax.toPlainObject = function (ast) {
     walkUp(ast, function(node) {
-        if (node.children &#x26;&#x26; node.children instanceof List) {
+        if (node.children &amp;&amp; node.children instanceof List) {
             node.children = node.children.toArray();
         }
     });
@@ -4442,8 +4435,8 @@ CSSO is based on [CSSTree](https://github.com/csstree/csstree) to parse CSS into
 CSS. All `CSSTree` API is available behind `syntax` field. You may minify CSS step by step:
 
 ```js
-var csso = require(&#x27;csso&#x27;);
-var ast = csso.syntax.parse(&#x27;.test { color: #ff0000; }&#x27;);
+var csso = require('csso');
+var ast = csso.syntax.parse('.test { color: #ff0000; }');
 var compressedAst = csso.compress(ast).ast;
 var minifiedCss = csso.<span class="apidocCodeKeywordSpan">syntax.translate</span>(compressedAst);
 
@@ -4451,8 +4444,8 @@ console.log(minifiedCss);
 // .test{color:red}
 ```
 
-&#x3e; Warning: CSSO uses early versions of CSSTree that still in active development. CSSO doesn&#x27;t guarantee API behind `syntax
-` field or AST format will not change in future releases of CSSO, since it&#x27;s subject to change in CSSTree. Be carefull with
+&gt; Warning: CSSO uses early versions of CSSTree that still in active development. CSSO doesn't guarantee API behind `syntax
+` field or AST format will not change in future releases of CSSO, since it's subject to change in CSSTree. Be carefull with
  CSSO updates if you use `syntax` API until this warning removal.
 ...</pre></li>
     </ul>
@@ -4472,11 +4465,11 @@ console.log(minifiedCss);
 
         before(node.node, buffer, value);
 
-        if (typeof value === &#x27;string&#x27;) {
+        if (typeof value === 'string') {
             buffer += value;
         } else {
-            for (var i = 0; i &#x3c; value.length; i++) {
-                if (typeof value[i] === &#x27;string&#x27;) {
+            for (var i = 0; i &lt; value.length; i++) {
+                if (typeof value[i] === 'string') {
                     buffer += value[i];
                 } else {
                     buffer = walk(value[i], buffer);
@@ -4489,14 +4482,14 @@ console.log(minifiedCss);
         return buffer;
     }
 
-    if (typeof before !== &#x27;function&#x27;) {
+    if (typeof before !== 'function') {
         before = function() {};
     }
-    if (typeof after !== &#x27;function&#x27;) {
+    if (typeof after !== 'function') {
         after = function() {};
     }
 
-    return walk(context.generate(node), &#x27;&#x27;);
+    return walk(context.generate(node), '');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -4638,10 +4631,10 @@ console.log(minifiedCss);
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function compress(ast, options) {
-    ast = ast || { type: &#x27;StyleSheet&#x27;, loc: null, children: new List() };
+    ast = ast || { type: 'StyleSheet', loc: null, children: new List() };
     options = options || {};
 
-    var logger = typeof options.logger === &#x27;function&#x27; ? options.logger : function() {};
+    var logger = typeof options.logger === 'function' ? options.logger : function() {};
     var specialComments = getCommentsOption(options);
     var restructuring = getRestructureOption(options);
     var firstAtrulesAllowed = true;
@@ -4656,7 +4649,7 @@ console.log(minifiedCss);
         ast = clone(ast);
     }
 
-    if (ast.type === &#x27;StyleSheet&#x27;) {
+    if (ast.type === 'StyleSheet') {
         inputRules = ast.children;
         ast.children = outputRules;
     } else {
@@ -4683,8 +4676,8 @@ console.log(minifiedCss);
             // add \n before comment if there is another content in outputRules
             if (!outputRules.isEmpty()) {
                 outputRules.insert(List.createItem({
-                    type: &#x27;Raw&#x27;,
-                    value: &#x27;\n&#x27;
+                    type: 'Raw',
+                    value: '\n'
                 }));
             }
 
@@ -4693,22 +4686,22 @@ console.log(minifiedCss);
             // add \n after comment if chunk is not empty
             if (!chunkRules.isEmpty()) {
                 outputRules.insert(List.createItem({
-                    type: &#x27;Raw&#x27;,
-                    value: &#x27;\n&#x27;
+                    type: 'Raw',
+                    value: '\n'
                 }));
             }
         }
 
-        if (firstAtrulesAllowed &#x26;&#x26; !chunkRules.isEmpty()) {
+        if (firstAtrulesAllowed &amp;&amp; !chunkRules.isEmpty()) {
             var lastRule = chunkRules.last();
 
-            if (lastRule.type !== &#x27;Atrule&#x27; ||
-               (lastRule.name !== &#x27;import&#x27; &#x26;&#x26; lastRule.name !== &#x27;charset&#x27;)) {
+            if (lastRule.type !== 'Atrule' ||
+               (lastRule.name !== 'import' &amp;&amp; lastRule.name !== 'charset')) {
                 firstAtrulesAllowed = false;
             }
         }
 
-        if (specialComments !== &#x27;exclamation&#x27;) {
+        if (specialComments !== 'exclamation') {
             specialComments = false;
         }
 
@@ -4726,8 +4719,8 @@ CSSO is based on [CSSTree](https://github.com/csstree/csstree) to parse CSS into
 CSS. All `CSSTree` API is available behind `syntax` field. You may minify CSS step by step:
 
 ```js
-var csso = require(&#x27;csso&#x27;);
-var ast = csso.syntax.parse(&#x27;.test { color: #ff0000; }&#x27;);
+var csso = require('csso');
+var ast = csso.syntax.parse('.test { color: #ff0000; }');
 var compressedAst = csso.<span class="apidocCodeKeywordSpan">compress</span>(ast).ast;
 var minifiedCss = csso.syntax.translate(compressedAst);
 
@@ -4735,8 +4728,8 @@ console.log(minifiedCss);
 // .test{color:red}
 ```
 
-&#x3e; Warning: CSSO uses early versions of CSSTree that still in active development. CSSO doesn&#x27;t guarantee API behind `syntax
-` field or AST format will not change in future releases of CSSO, since it&#x27;s subject to change in CSSTree. Be carefull with
+&gt; Warning: CSSO uses early versions of CSSTree that still in active development. CSSO doesn't guarantee API behind `syntax
+` field or AST format will not change in future releases of CSSO, since it's subject to change in CSSTree. Be carefull with
  CSSO updates if you use `syntax` API until this warning removal.
 ...</pre></li>
     </ul>
@@ -4756,17 +4749,17 @@ console.log(minifiedCss);
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function minifyStylesheet(source, options) {
-    return minify(&#x27;stylesheet&#x27;, source, options);
+    return minify('stylesheet', source, options);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-&#x3c;!-- /MarkdownTOC --&#x3e;
+&lt;!-- /MarkdownTOC --&gt;
 
 Basic usage:
 
 ```js
-var csso = require(&#x27;csso&#x27;);
+var csso = require('csso');
 
-var minifiedCss = csso.<span class="apidocCodeKeywordSpan">minify</span>(&#x27;.test { color: #ff0000; }&#x27;).css;
+var minifiedCss = csso.<span class="apidocCodeKeywordSpan">minify</span>('.test { color: #ff0000; }').css;
 
 console.log(minifiedCss);
 // .test{color:red}
@@ -4792,20 +4785,20 @@ CSS. All `CSSTree` API is available behind `syntax` field. You may minify CSS st
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function minifyBlock(source, options) {
-    return minify(&#x27;declarationList&#x27;, source, options);
+    return minify('declarationList', source, options);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 - Other options are the same as for [`compress()`](#compressast-options) function.
 
 ### minifyBlock(source[, options])
 
-The same as `minify()` but for list of declarations. Usually it&#x27;s a `style` attribute value.
+The same as `minify()` but for list of declarations. Usually it's a `style` attribute value.
 
 ```js
-var result = csso.<span class="apidocCodeKeywordSpan">minifyBlock</span>(&#x27;color: rgba(255, 0, 0, 1); color: #ff0000&#x27;);
+var result = csso.<span class="apidocCodeKeywordSpan">minifyBlock</span>('color: rgba(255, 0, 0, 1); color: #ff0000');
 
 console.log(result.css);
-// &#x3e; color:red
+// &gt; color:red
 ```
 
 ### compress(ast[, options])
@@ -4889,7 +4882,7 @@ console.log(result.css);
     this.lines = null;
     this.columns = null;
 
-    this.setSource(source || &#x27;&#x27;, startOffset, startLine, startColumn);
+    this.setSource(source || '', startOffset, startLine, startColumn);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -4969,7 +4962,7 @@ console.log(result.css);
     <li>description and source-code<pre class="apidocCodePre">fork = function (extension) {
     var base = mix({}, config); // copy of config
     return createSyntax(
-        typeof extension === &#x27;function&#x27;
+        typeof extension === 'function'
             ? extension(base, assign)
             : mix(base, extension)
     );
@@ -4988,7 +4981,7 @@ console.log(result.css);
     <ul>
     <li>description and source-code<pre class="apidocCodePre">fromPlainObject = function (ast) {
     walk(ast, function(node) {
-        if (node.children &#x26;&#x26; node.children instanceof List === false) {
+        if (node.children &amp;&amp; node.children instanceof List === false) {
             node.children = new List().fromArray(node.children);
         }
     });
@@ -5018,7 +5011,7 @@ console.log(result.css);
         return keywords[keyword] = keywords[name];
     }
 
-    var vendor = !isVariable(name, 0) ? getVendorPrefix(name, 0) : &#x27;&#x27;;
+    var vendor = !isVariable(name, 0) ? getVendorPrefix(name, 0) : '';
 
     return keywords[keyword] = Object.freeze({
         vendor: vendor,
@@ -5047,8 +5040,8 @@ CSSO is based on [CSSTree](https://github.com/csstree/csstree) to parse CSS into
 CSS. All `CSSTree` API is available behind `syntax` field. You may minify CSS step by step:
 
 ```js
-var csso = require(&#x27;csso&#x27;);
-var ast = csso.syntax.<span class="apidocCodeKeywordSpan">parse</span>(&#x27;.test { color: #ff0000; }&#x27;);
+var csso = require('csso');
+var ast = csso.syntax.<span class="apidocCodeKeywordSpan">parse</span>('.test { color: #ff0000; }');
 var compressedAst = csso.compress(ast).ast;
 var minifiedCss = csso.syntax.translate(compressedAst);
 
@@ -5075,14 +5068,14 @@ console.log(minifiedCss);
     var name = property;
     var hack = property[0];
 
-    if (hack === &#x27;/&#x27; &#x26;&#x26; property[1] === &#x27;/&#x27;) {
-        hack = &#x27;//&#x27;;
-    } else if (hack !== &#x27;_&#x27; &#x26;&#x26;
-               hack !== &#x27;*&#x27; &#x26;&#x26;
-               hack !== &#x27;$&#x27; &#x26;&#x26;
-               hack !== &#x27;#&#x27; &#x26;&#x26;
-               hack !== &#x27;+&#x27;) {
-        hack = &#x27;&#x27;;
+    if (hack === '/' &amp;&amp; property[1] === '/') {
+        hack = '//';
+    } else if (hack !== '_' &amp;&amp;
+               hack !== '*' &amp;&amp;
+               hack !== '$' &amp;&amp;
+               hack !== '#' &amp;&amp;
+               hack !== '+') {
+        hack = '';
     }
 
     var variable = isVariable(name, hack.length);
@@ -5094,7 +5087,7 @@ console.log(minifiedCss);
         }
     }
 
-    var vendor = !variable ? getVendorPrefix(name, hack.length) : &#x27;&#x27;;
+    var vendor = !variable ? getVendorPrefix(name, hack.length) : '';
 
     return properties[property] = Object.freeze({
         hack: hack,
@@ -5118,7 +5111,7 @@ console.log(minifiedCss);
     <ul>
     <li>description and source-code<pre class="apidocCodePre">toPlainObject = function (ast) {
     walkUp(ast, function(node) {
-        if (node.children &#x26;&#x26; node.children instanceof List) {
+        if (node.children &amp;&amp; node.children instanceof List) {
             node.children = node.children.toArray();
         }
     });
@@ -5146,8 +5139,8 @@ CSSO is based on [CSSTree](https://github.com/csstree/csstree) to parse CSS into
 CSS. All `CSSTree` API is available behind `syntax` field. You may minify CSS step by step:
 
 ```js
-var csso = require(&#x27;csso&#x27;);
-var ast = csso.syntax.parse(&#x27;.test { color: #ff0000; }&#x27;);
+var csso = require('csso');
+var ast = csso.syntax.parse('.test { color: #ff0000; }');
 var compressedAst = csso.compress(ast).ast;
 var minifiedCss = csso.syntax.<span class="apidocCodeKeywordSpan">translate</span>(compressedAst);
 
@@ -5155,8 +5148,8 @@ console.log(minifiedCss);
 // .test{color:red}
 ```
 
-&#x3e; Warning: CSSO uses early versions of CSSTree that still in active development. CSSO doesn&#x27;t guarantee API behind `syntax
-` field or AST format will not change in future releases of CSSO, since it&#x27;s subject to change in CSSTree. Be carefull with
+&gt; Warning: CSSO uses early versions of CSSTree that still in active development. CSSO doesn't guarantee API behind `syntax
+` field or AST format will not change in future releases of CSSO, since it's subject to change in CSSTree. Be carefull with
  CSSO updates if you use `syntax` API until this warning removal.
 ...</pre></li>
     </ul>
@@ -5176,11 +5169,11 @@ console.log(minifiedCss);
 
         before(node.node, buffer, value);
 
-        if (typeof value === &#x27;string&#x27;) {
+        if (typeof value === 'string') {
             buffer += value;
         } else {
-            for (var i = 0; i &#x3c; value.length; i++) {
-                if (typeof value[i] === &#x27;string&#x27;) {
+            for (var i = 0; i &lt; value.length; i++) {
+                if (typeof value[i] === 'string') {
                     buffer += value[i];
                 } else {
                     buffer = walk(value[i], buffer);
@@ -5193,14 +5186,14 @@ console.log(minifiedCss);
         return buffer;
     }
 
-    if (typeof before !== &#x27;function&#x27;) {
+    if (typeof before !== 'function') {
         before = function() {};
     }
-    if (typeof after !== &#x27;function&#x27;) {
+    if (typeof after !== 'function') {
         after = function() {};
     }
 
-    return walk(context.generate(node), &#x27;&#x27;);
+    return walk(context.generate(node), '');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -5419,7 +5412,7 @@ console.log(minifiedCss);
         if (structure.hasOwnProperty(node.type)) {
             structure[node.type].check(node, warns.push.bind(warns));
         } else {
-            throw new Error(&#x27;Unknown node type: &#x27; + node.type);
+            throw new Error('Unknown node type: ' + node.type);
         }
     });
 
@@ -5444,9 +5437,9 @@ console.log(minifiedCss);
         match: null
     };
 
-    if (typeof syntax === &#x27;function&#x27;) {
+    if (typeof syntax === 'function') {
         descriptor.match = function(node) {
-            if (node &#x26;&#x26; syntax(node)) {
+            if (node &amp;&amp; syntax(node)) {
                 return {
                     badNode: null,
                     lastNode: null,
@@ -5458,10 +5451,10 @@ console.log(minifiedCss);
             return null;
         };
     } else {
-        if (typeof syntax === &#x27;string&#x27;) {
-            Object.defineProperty(descriptor, &#x27;syntax&#x27;, {
+        if (typeof syntax === 'string') {
+            Object.defineProperty(descriptor, 'syntax', {
                 get: function() {
-                    Object.defineProperty(descriptor, &#x27;syntax&#x27;, {
+                    Object.defineProperty(descriptor, 'syntax', {
                         value: parse(syntax)
                     });
 
@@ -5543,11 +5536,11 @@ console.log(minifiedCss);
     <li>description and source-code<pre class="apidocCodePre">matchProperty = function (propertyName, value) {
     var property = names.property(propertyName);
 
-    // don&#x27;t match syntax for a custom property
+    // don't match syntax for a custom property
     if (property.variable) {
         return {
-            type: &#x27;NoMatch&#x27;,
-            comment: &#x27;Lexer matching doesn\&#x27;t applicable for custom properties&#x27;
+            type: 'NoMatch',
+            comment: 'Lexer matching doesn\'t applicable for custom properties'
         };
     }
 
@@ -5556,7 +5549,7 @@ console.log(minifiedCss);
         : this.getProperty(property.name);
 
     if (!propertySyntax) {
-        this.lastMatchError = new Error(&#x27;Unknown property: &#x27; + propertyName);
+        this.lastMatchError = new Error('Unknown property: ' + propertyName);
         return null;
     }
 
@@ -5578,7 +5571,7 @@ console.log(minifiedCss);
     var typeSyntax = this.getType(typeName);
 
     if (!typeSyntax) {
-        this.lastMatchError = new Error(&#x27;Unknown type: &#x27; + typeName);
+        this.lastMatchError = new Error('Unknown type: ' + typeName);
         return null;
     }
 
@@ -5600,21 +5593,21 @@ console.log(minifiedCss);
     return JSON.stringify(this.dump());
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  filename: &#x27;path/to/my.css&#x27;, // will be added to source map as reference to source file
+  filename: 'path/to/my.css', // will be added to source map as reference to source file
   sourceMap: true             // generate source map
 });
 
 console.log(result);
-// { css: &#x27;...minified...&#x27;, map: SourceMapGenerator {} }
+// { css: '...minified...', map: SourceMapGenerator {} }
 
 console.log(result.map.<span class="apidocCodeKeywordSpan">toString</span>());
-// &#x27;{ .. source map content .. }&#x27;
+// '{ .. source map content .. }'
 ```
 
 Example of generating source map with respect of source map from input CSS:
 
 ```js
-var require(&#x27;source-map&#x27;);
+var require('source-map');
 ...</pre></li>
     </ul>
 
@@ -5636,12 +5629,12 @@ var require(&#x27;source-map&#x27;);
         broken[name] = false;
         if (descriptor.syntax !== null) {
             walk(descriptor.syntax, function(node) {
-                if (node.type !== &#x27;Type&#x27; &#x26;&#x26; node.type !== &#x27;Property&#x27;) {
+                if (node.type !== 'Type' &amp;&amp; node.type !== 'Property') {
                     return;
                 }
 
-                var map = node.type === &#x27;Type&#x27; ? syntax.types : syntax.properties;
-                var brokenMap = node.type === &#x27;Type&#x27; ? brokenTypes : brokenProperties;
+                var map = node.type === 'Type' ? syntax.types : syntax.properties;
+                var brokenMap = node.type === 'Type' ? brokenTypes : brokenProperties;
 
                 if (!map.hasOwnProperty(node.name) || validate(syntax, node.name, brokenMap, map[node.name])) {
                     broken[name] = true;
@@ -5750,7 +5743,7 @@ var require(&#x27;source-map&#x27;);
         if (structure.hasOwnProperty(node.type)) {
             structure[node.type].check(node, warns.push.bind(warns));
         } else {
-            throw new Error(&#x27;Unknown node type: &#x27; + node.type);
+            throw new Error('Unknown node type: ' + node.type);
         }
     });
 
@@ -5780,9 +5773,9 @@ var require(&#x27;source-map&#x27;);
         match: null
     };
 
-    if (typeof syntax === &#x27;function&#x27;) {
+    if (typeof syntax === 'function') {
         descriptor.match = function(node) {
-            if (node &#x26;&#x26; syntax(node)) {
+            if (node &amp;&amp; syntax(node)) {
                 return {
                     badNode: null,
                     lastNode: null,
@@ -5794,10 +5787,10 @@ var require(&#x27;source-map&#x27;);
             return null;
         };
     } else {
-        if (typeof syntax === &#x27;string&#x27;) {
-            Object.defineProperty(descriptor, &#x27;syntax&#x27;, {
+        if (typeof syntax === 'string') {
+            Object.defineProperty(descriptor, 'syntax', {
                 get: function() {
-                    Object.defineProperty(descriptor, &#x27;syntax&#x27;, {
+                    Object.defineProperty(descriptor, 'syntax', {
                         value: parse(syntax)
                     });
 
@@ -5899,11 +5892,11 @@ var require(&#x27;source-map&#x27;);
     <li>description and source-code<pre class="apidocCodePre">matchProperty = function (propertyName, value) {
     var property = names.property(propertyName);
 
-    // don&#x27;t match syntax for a custom property
+    // don't match syntax for a custom property
     if (property.variable) {
         return {
-            type: &#x27;NoMatch&#x27;,
-            comment: &#x27;Lexer matching doesn\&#x27;t applicable for custom properties&#x27;
+            type: 'NoMatch',
+            comment: 'Lexer matching doesn\'t applicable for custom properties'
         };
     }
 
@@ -5912,7 +5905,7 @@ var require(&#x27;source-map&#x27;);
         : this.getProperty(property.name);
 
     if (!propertySyntax) {
-        this.lastMatchError = new Error(&#x27;Unknown property: &#x27; + propertyName);
+        this.lastMatchError = new Error('Unknown property: ' + propertyName);
         return null;
     }
 
@@ -5939,7 +5932,7 @@ var require(&#x27;source-map&#x27;);
     var typeSyntax = this.getType(typeName);
 
     if (!typeSyntax) {
-        this.lastMatchError = new Error(&#x27;Unknown type: &#x27; + typeName);
+        this.lastMatchError = new Error('Unknown type: ' + typeName);
         return null;
     }
 
@@ -5964,21 +5957,21 @@ var require(&#x27;source-map&#x27;);
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function toString() { [native code] }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  filename: &#x27;path/to/my.css&#x27;, // will be added to source map as reference to source file
+  filename: 'path/to/my.css', // will be added to source map as reference to source file
   sourceMap: true             // generate source map
 });
 
 console.log(result);
-// { css: &#x27;...minified...&#x27;, map: SourceMapGenerator {} }
+// { css: '...minified...', map: SourceMapGenerator {} }
 
 console.log(result.map.<span class="apidocCodeKeywordSpan">toString</span>());
-// &#x27;{ .. source map content .. }&#x27;
+// '{ .. source map content .. }'
 ```
 
 Example of generating source map with respect of source map from input CSS:
 
 ```js
-var require(&#x27;source-map&#x27;);
+var require('source-map');
 ...</pre></li>
     </ul>
 
@@ -6005,12 +5998,12 @@ var require(&#x27;source-map&#x27;);
         broken[name] = false;
         if (descriptor.syntax !== null) {
             walk(descriptor.syntax, function(node) {
-                if (node.type !== &#x27;Type&#x27; &#x26;&#x26; node.type !== &#x27;Property&#x27;) {
+                if (node.type !== 'Type' &amp;&amp; node.type !== 'Property') {
                     return;
                 }
 
-                var map = node.type === &#x27;Type&#x27; ? syntax.types : syntax.properties;
-                var brokenMap = node.type === &#x27;Type&#x27; ? brokenTypes : brokenProperties;
+                var map = node.type === 'Type' ? syntax.types : syntax.properties;
+                var brokenMap = node.type === 'Type' ? brokenTypes : brokenProperties;
 
                 if (!map.hasOwnProperty(node.name) || validate(syntax, node.name, brokenMap, map[node.name])) {
                     broken[name] = true;
@@ -6112,12 +6105,12 @@ var require(&#x27;source-map&#x27;);
 
     // insert to end of the list
     if (this.tail !== null) {
-        // if list has a tail, then it also has a head, but head doesn&#x27;t change
+        // if list has a tail, then it also has a head, but head doesn't change
 
-        // last item -&#x3e; new item
+        // last item -&gt; new item
         this.tail.next = item;
 
-        // last item &#x3c;- new item
+        // last item &lt;- new item
         item.prev = this.tail;
     } else {
         // if list has no a tail, then it also has no a head
@@ -6168,12 +6161,12 @@ var require(&#x27;source-map&#x27;);
     // insert to end of the list
     if (this.tail !== null) {
         // if destination list has a tail, then it also has a head,
-        // but head doesn&#x27;t change
+        // but head doesn't change
 
-        // dest tail -&#x3e; source head
+        // dest tail -&gt; source head
         this.tail.next = list.head;
 
-        // dest tail &#x3c;- source head
+        // dest tail &lt;- source head
         list.head.prev = this.tail;
     } else {
         // if list has no a tail, then it also has no a head
@@ -6322,7 +6315,7 @@ var require(&#x27;source-map&#x27;);
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">first = function () {
-    return this.head &#x26;&#x26; this.head.data;
+    return this.head &amp;&amp; this.head.data;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -6341,7 +6334,7 @@ var require(&#x27;source-map&#x27;);
 
     this.head = null;
 
-    for (var i = 0; i &#x3c; array.length; i++) {
+    for (var i = 0; i &lt; array.length; i++) {
         var item = createItem(array[i]);
 
         if (cursor !== null) {
@@ -6394,7 +6387,7 @@ var require(&#x27;source-map&#x27;);
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">insert = function (item, before) {
-    if (before !== undefined &#x26;&#x26; before !== null) {
+    if (before !== undefined &amp;&amp; before !== null) {
         // prev   before
         //      ^
         //     item
@@ -6403,10 +6396,10 @@ var require(&#x27;source-map&#x27;);
         if (before.prev === null) {
             // insert to the beginning of list
             if (this.head !== before) {
-                throw new Error(&#x27;before doesn\&#x27;t below to list&#x27;);
+                throw new Error('before doesn\'t below to list');
             }
 
-            // since head points to before therefore list doesn&#x27;t empty
+            // since head points to before therefore list doesn't empty
             // no need to check tail
             this.head = item;
             before.prev = item;
@@ -6454,7 +6447,7 @@ var require(&#x27;source-map&#x27;);
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">last = function () {
-    return this.tail &#x26;&#x26; this.tail.data;
+    return this.tail &amp;&amp; this.tail.data;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -6581,7 +6574,7 @@ var require(&#x27;source-map&#x27;);
         item.prev.next = item.next;
     } else {
         if (this.head !== item) {
-            throw new Error(&#x27;item doesn\&#x27;t below to list&#x27;);
+            throw new Error('item doesn\'t below to list');
         }
 
         this.head = item.next;
@@ -6591,7 +6584,7 @@ var require(&#x27;source-map&#x27;);
         item.next.prev = item.prev;
     } else {
         if (this.tail !== item) {
-            throw new Error(&#x27;item doesn\&#x27;t below to list&#x27;);
+            throw new Error('item doesn\'t below to list');
         }
 
         this.tail = item.prev;
@@ -6729,12 +6722,12 @@ var require(&#x27;source-map&#x27;);
 
     // insert to end of the list
     if (this.tail !== null) {
-        // if list has a tail, then it also has a head, but head doesn&#x27;t change
+        // if list has a tail, then it also has a head, but head doesn't change
 
-        // last item -&#x3e; new item
+        // last item -&gt; new item
         this.tail.next = item;
 
-        // last item &#x3c;- new item
+        // last item &lt;- new item
         item.prev = this.tail;
     } else {
         // if list has no a tail, then it also has no a head
@@ -6795,12 +6788,12 @@ var require(&#x27;source-map&#x27;);
     // insert to end of the list
     if (this.tail !== null) {
         // if destination list has a tail, then it also has a head,
-        // but head doesn&#x27;t change
+        // but head doesn't change
 
-        // dest tail -&#x3e; source head
+        // dest tail -&gt; source head
         this.tail.next = list.head;
 
-        // dest tail &#x3c;- source head
+        // dest tail &lt;- source head
         list.head.prev = this.tail;
     } else {
         // if list has no a tail, then it also has no a head
@@ -6979,7 +6972,7 @@ var require(&#x27;source-map&#x27;);
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">first = function () {
-    return this.head &#x26;&#x26; this.head.data;
+    return this.head &amp;&amp; this.head.data;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -7003,7 +6996,7 @@ var require(&#x27;source-map&#x27;);
 
     this.head = null;
 
-    for (var i = 0; i &#x3c; array.length; i++) {
+    for (var i = 0; i &lt; array.length; i++) {
         var item = createItem(array[i]);
 
         if (cursor !== null) {
@@ -7066,7 +7059,7 @@ var require(&#x27;source-map&#x27;);
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">insert = function (item, before) {
-    if (before !== undefined &#x26;&#x26; before !== null) {
+    if (before !== undefined &amp;&amp; before !== null) {
         // prev   before
         //      ^
         //     item
@@ -7075,10 +7068,10 @@ var require(&#x27;source-map&#x27;);
         if (before.prev === null) {
             // insert to the beginning of list
             if (this.head !== before) {
-                throw new Error(&#x27;before doesn\&#x27;t below to list&#x27;);
+                throw new Error('before doesn\'t below to list');
             }
 
-            // since head points to before therefore list doesn&#x27;t empty
+            // since head points to before therefore list doesn't empty
             // no need to check tail
             this.head = item;
             before.prev = item;
@@ -7136,7 +7129,7 @@ var require(&#x27;source-map&#x27;);
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">last = function () {
-    return this.tail &#x26;&#x26; this.tail.data;
+    return this.tail &amp;&amp; this.tail.data;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -7283,7 +7276,7 @@ var require(&#x27;source-map&#x27;);
         item.prev.next = item.next;
     } else {
         if (this.head !== item) {
-            throw new Error(&#x27;item doesn\&#x27;t below to list&#x27;);
+            throw new Error('item doesn\'t below to list');
         }
 
         this.head = item.next;
@@ -7293,7 +7286,7 @@ var require(&#x27;source-map&#x27;);
         item.next.prev = item.prev;
     } else {
         if (this.tail !== item) {
-            throw new Error(&#x27;item doesn\&#x27;t below to list&#x27;);
+            throw new Error('item doesn\'t below to list');
         }
 
         this.tail = item.prev;
@@ -7420,7 +7413,7 @@ var require(&#x27;source-map&#x27;);
     this.lines = null;
     this.columns = null;
 
-    this.setSource(source || &#x27;&#x27;, startOffset, startLine, startColumn);
+    this.setSource(source || '', startOffset, startLine, startColumn);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -7436,7 +7429,7 @@ var require(&#x27;source-map&#x27;);
     <ul>
     <li>description and source-code<pre class="apidocCodePre">CssSyntaxError = function (message, source, offset, line, column) {
     var error = new SyntaxError();
-    error.name = &#x27;CssSyntaxError&#x27;;
+    error.name = 'CssSyntaxError';
     error.message = message;
     error.source = source;
     error.offset = offset;
@@ -7446,10 +7439,10 @@ var require(&#x27;source-map&#x27;);
     error.sourceFragment = function(extraLines) {
         return sourceFragment(error, isNaN(extraLines) ? 0 : extraLines);
     };
-    Object.defineProperty(error, &#x27;formattedMessage&#x27;, {
+    Object.defineProperty(error, 'formattedMessage', {
         get: function() {
             return (
-                &#x27;Parse error: &#x27; + error.message + &#x27;\n&#x27; +
+                'Parse error: ' + error.message + '\n' +
                 sourceFragment(error, 2)
             );
         }
@@ -7480,7 +7473,7 @@ var require(&#x27;source-map&#x27;);
     var code = testStr.charCodeAt(offset);
 
     // code.toLowerCase()
-    if (code &#x3e;= 65 &#x26;&#x26; code &#x3c;= 90) {
+    if (code &gt;= 65 &amp;&amp; code &lt;= 90) {
         code = code | 32;
     }
 
@@ -7503,16 +7496,16 @@ var require(&#x27;source-map&#x27;);
         return false;
     }
 
-    if (start &#x3c; 0 || end &#x3e; testStr.length) {
+    if (start &lt; 0 || end &gt; testStr.length) {
         return false;
     }
 
-    for (var i = start; i &#x3c; end; i++) {
+    for (var i = start; i &lt; end; i++) {
         var testCode = testStr.charCodeAt(i);
         var refCode = referenceStr.charCodeAt(i - start);
 
         // testStr[i].toLowerCase()
-        if (testCode &#x3e;= 65 &#x26;&#x26; testCode &#x3c;= 90) {
+        if (testCode &gt;= 65 &amp;&amp; testCode &lt;= 90) {
             testCode = testCode | 32;
         }
 
@@ -7551,7 +7544,7 @@ var require(&#x27;source-map&#x27;);
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function findCommentEnd(source, offset) {
-    var commentEnd = source.indexOf(&#x27;*/&#x27;, offset);
+    var commentEnd = source.indexOf('*/', offset);
 
     if (commentEnd === -1) {
         return source.length;
@@ -7572,10 +7565,10 @@ var require(&#x27;source-map&#x27;);
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function findDecimalNumberEnd(source, offset) {
-    for (; offset &#x3c; source.length; offset++) {
+    for (; offset &lt; source.length; offset++) {
         var code = source.charCodeAt(offset);
 
-        if (code &#x3c; 48 || code &#x3e; 57) {  // not a 0 .. 9
+        if (code &lt; 48 || code &gt; 57) {  // not a 0 .. 9
             break;
         }
     }
@@ -7595,14 +7588,14 @@ var require(&#x27;source-map&#x27;);
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function findEscaseEnd(source, offset) {
-    for (var i = 0; i &#x3c; 7 &#x26;&#x26; offset + i &#x3c; source.length; i++) {
+    for (var i = 0; i &lt; 7 &amp;&amp; offset + i &lt; source.length; i++) {
         var code = source.charCodeAt(offset + i);
 
-        if (i !== 6 &#x26;&#x26; isHex(code)) {
+        if (i !== 6 &amp;&amp; isHex(code)) {
             continue;
         }
 
-        if (i &#x3e; 0) {
+        if (i &gt; 0) {
             offset += i - 1 + isNewline(source, offset + i, code);
             if (code === SPACE || code === TAB) {
                 offset++;
@@ -7627,12 +7620,12 @@ var require(&#x27;source-map&#x27;);
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function findIdentifierEnd(source, offset) {
-    for (; offset &#x3c; source.length; offset++) {
+    for (; offset &lt; source.length; offset++) {
         var code = source.charCodeAt(offset);
 
         if (code === BACK_SLASH) {
             offset = findEscaseEnd(source, offset + 1);
-        } else if (code &#x3c; SYMBOL_TYPE_LENGTH &#x26;&#x26; PUNCTUATION[code] === PUNCTUATOR) {
+        } else if (code &lt; SYMBOL_TYPE_LENGTH &amp;&amp; PUNCTUATION[code] === PUNCTUATOR) {
             break;
         }
     }
@@ -7652,10 +7645,10 @@ var require(&#x27;source-map&#x27;);
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function findLastNonSpaceLocation(scanner) {
-    for (var i = scanner.source.length - 1; i &#x3e;= 0; i--) {
+    for (var i = scanner.source.length - 1; i &gt;= 0; i--) {
         var code = scanner.source.charCodeAt(i);
 
-        if (code !== SPACE &#x26;&#x26; code !== TAB &#x26;&#x26; code !== R &#x26;&#x26; code !== N &#x26;&#x26; code !== F) {
+        if (code !== SPACE &amp;&amp; code !== TAB &amp;&amp; code !== R &amp;&amp; code !== N &amp;&amp; code !== F) {
             break;
         }
     }
@@ -7680,7 +7673,7 @@ var require(&#x27;source-map&#x27;);
     offset = findDecimalNumberEnd(source, offset);
 
     // fraction: .\d+
-    if (allowFraction &#x26;&#x26; offset + 1 &#x3c; source.length &#x26;&#x26; source.charCodeAt(offset) === FULLSTOP) {
+    if (allowFraction &amp;&amp; offset + 1 &lt; source.length &amp;&amp; source.charCodeAt(offset) === FULLSTOP) {
         code = source.charCodeAt(offset + 1);
 
         if (isNumber(code)) {
@@ -7689,12 +7682,12 @@ var require(&#x27;source-map&#x27;);
     }
 
     // exponent: e[+-]\d+
-    if (offset + 1 &#x3c; source.length) {
+    if (offset + 1 &lt; source.length) {
         if ((source.charCodeAt(offset) | 32) === E) { // case insensitive check for `e`
             code = source.charCodeAt(offset + 1);
 
             if (code === PLUSSIGN || code === HYPHENMINUS) {
-                if (offset + 2 &#x3c; source.length) {
+                if (offset + 2 &lt; source.length) {
                     code = source.charCodeAt(offset + 2);
                 }
             }
@@ -7720,7 +7713,7 @@ var require(&#x27;source-map&#x27;);
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function findStringEnd(source, offset, quote) {
-    for (; offset &#x3c; source.length; offset++) {
+    for (; offset &lt; source.length; offset++) {
         var code = source.charCodeAt(offset);
 
         // TODO: bad string
@@ -7747,10 +7740,10 @@ var require(&#x27;source-map&#x27;);
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function findWhitespaceEnd(source, offset) {
-    for (; offset &#x3c; source.length; offset++) {
+    for (; offset &lt; source.length; offset++) {
         var code = source.charCodeAt(offset);
 
-        if (code !== SPACE &#x26;&#x26; code !== TAB &#x26;&#x26; code !== R &#x26;&#x26; code !== N &#x26;&#x26; code !== F) {
+        if (code !== SPACE &amp;&amp; code !== TAB &amp;&amp; code !== R &amp;&amp; code !== N &amp;&amp; code !== F) {
             break;
         }
     }
@@ -7791,9 +7784,9 @@ var require(&#x27;source-map&#x27;);
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function isHex(code) {
-    return (code &#x3e;= 48 &#x26;&#x26; code &#x3c;= 57) || // 0 .. 9
-           (code &#x3e;= 65 &#x26;&#x26; code &#x3c;= 70) || // A .. F
-           (code &#x3e;= 97 &#x26;&#x26; code &#x3c;= 102);  // a .. f
+    return (code &gt;= 48 &amp;&amp; code &lt;= 57) || // 0 .. 9
+           (code &gt;= 65 &amp;&amp; code &lt;= 70) || // A .. F
+           (code &gt;= 97 &amp;&amp; code &lt;= 102);  // a .. f
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -7809,7 +7802,7 @@ var require(&#x27;source-map&#x27;);
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function isNewline(source, offset, code) {
     if (code === N || code === F || code === R) {
-        if (code === R &#x26;&#x26; offset + 1 &#x3c; source.length &#x26;&#x26; source.charCodeAt(offset + 1) === N) {
+        if (code === R &amp;&amp; offset + 1 &lt; source.length &amp;&amp; source.charCodeAt(offset + 1) === N) {
             return 2;
         }
 
@@ -7831,7 +7824,7 @@ var require(&#x27;source-map&#x27;);
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function isNumber(code) {
-    return code &#x3e;= 48 &#x26;&#x26; code &#x3c;= 57;
+    return code &gt;= 48 &amp;&amp; code &lt;= 57;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -7897,9 +7890,9 @@ var require(&#x27;source-map&#x27;);
     <li>description and source-code<pre class="apidocCodePre">eat = function (tokenType) {
     if (this.tokenType !== tokenType) {
         this.error(
-            NAME[tokenType] + &#x27; is expected&#x27;,
+            NAME[tokenType] + ' is expected',
             // when test type is part of another token show error for current position + 1
-            // e.g. eat(HYPHENMINUS) will fail on &#x22;-foo&#x22;, but pointing on &#x22;-&#x22; is odd
+            // e.g. eat(HYPHENMINUS) will fail on "-foo", but pointing on "-" is odd
             this.tokenStart + (this.source.charCodeAt(this.tokenStart) === tokenType ? 1 : 0)
         );
     }
@@ -7935,14 +7928,14 @@ var require(&#x27;source-map&#x27;);
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">error = function (message, offset) {
-    var location = typeof offset !== &#x27;undefined&#x27; &#x26;&#x26; offset &#x3c; this.source.length
+    var location = typeof offset !== 'undefined' &amp;&amp; offset &lt; this.source.length
         ? this.getLocation(offset)
         : this.eof
             ? findLastNonSpaceLocation(this)
             : this.getLocation(this.tokenStart);
 
     throw new CssSyntaxError(
-        message || &#x27;Unexpected input&#x27;,
+        message || 'Unexpected input',
         this.source,
         location.offset,
         location.line,
@@ -7963,7 +7956,7 @@ var require(&#x27;source-map&#x27;);
     <ul>
     <li>description and source-code<pre class="apidocCodePre">expectIdentifier = function (name) {
     if (this.tokenType !== IDENTIFIER || cmpStr(this.source, this.tokenStart, this.tokenEnd, name) === false) {
-        this.error(&#x27;Identifier `&#x27; + name + &#x27;` is expected&#x27;);
+        this.error('Identifier `' + name + '` is expected');
     }
 
     this.next();
@@ -8052,7 +8045,7 @@ var require(&#x27;source-map&#x27;);
     <ul>
     <li>description and source-code<pre class="apidocCodePre">getTypes = function () {
     return Array.prototype.slice.call(this.offsetAndType, 0, this.tokenCount).map(function(item) {
-        return NAME[item &#x3e;&#x3e; TYPE_OFFSET];
+        return NAME[item &gt;&gt; TYPE_OFFSET];
     });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -8070,8 +8063,8 @@ var require(&#x27;source-map&#x27;);
     <li>description and source-code<pre class="apidocCodePre">lookupNonWSType = function (offset) {
     offset += this.currentToken;
 
-    for (var type; offset &#x3c; this.tokenCount; offset++) {
-        type = this.offsetAndType[offset] &#x3e;&#x3e; TYPE_OFFSET;
+    for (var type; offset &lt; this.tokenCount; offset++) {
+        type = this.offsetAndType[offset] &gt;&gt; TYPE_OFFSET;
 
         if (type !== WHITESPACE) {
             return type;
@@ -8095,8 +8088,8 @@ var require(&#x27;source-map&#x27;);
     <li>description and source-code<pre class="apidocCodePre">lookupType = function (offset) {
     offset += this.currentToken;
 
-    if (offset &#x3c; this.tokenCount) {
-        return this.offsetAndType[offset] &#x3e;&#x3e; TYPE_OFFSET;
+    if (offset &lt; this.tokenCount) {
+        return this.offsetAndType[offset] &gt;&gt; TYPE_OFFSET;
     }
 
     return NULL;
@@ -8116,11 +8109,11 @@ var require(&#x27;source-map&#x27;);
     <li>description and source-code<pre class="apidocCodePre">lookupValue = function (offset, referenceStr) {
     offset += this.currentToken;
 
-    if (offset &#x3c; this.tokenCount) {
+    if (offset &lt; this.tokenCount) {
         return cmpStr(
             this.source,
-            this.offsetAndType[offset - 1] &#x26; OFFSET_MASK,
-            this.offsetAndType[offset] &#x26; OFFSET_MASK,
+            this.offsetAndType[offset - 1] &amp; OFFSET_MASK,
+            this.offsetAndType[offset] &amp; OFFSET_MASK,
             referenceStr
         );
     }
@@ -8142,12 +8135,12 @@ var require(&#x27;source-map&#x27;);
     <li>description and source-code<pre class="apidocCodePre">next = function () {
     var next = this.currentToken + 1;
 
-    if (next &#x3c; this.tokenCount) {
+    if (next &lt; this.tokenCount) {
         this.currentToken = next;
         this.tokenStart = this.tokenEnd;
         next = this.offsetAndType[next];
-        this.tokenType = next &#x3e;&#x3e; TYPE_OFFSET;
-        this.tokenEnd = next &#x26; OFFSET_MASK;
+        this.tokenType = next &gt;&gt; TYPE_OFFSET;
+        this.tokenEnd = next &amp; OFFSET_MASK;
     } else {
         this.currentToken = this.tokenCount;
         this.eof = true;
@@ -8171,9 +8164,9 @@ var require(&#x27;source-map&#x27;);
     var start = firstCharOffset(source);
 
     this.source = source;
-    this.startOffset = typeof startOffset === &#x27;undefined&#x27; ? 0 : startOffset;
-    this.startLine = typeof startLine === &#x27;undefined&#x27; ? 1 : startLine;
-    this.startColumn = typeof startColumn === &#x27;undefined&#x27; ? 1 : startColumn;
+    this.startOffset = typeof startOffset === 'undefined' ? 0 : startOffset;
+    this.startLine = typeof startLine === 'undefined' ? 1 : startLine;
+    this.startColumn = typeof startColumn === 'undefined' ? 1 : startColumn;
     this.linesAnsColumnsComputed = false;
 
     this.eof = false;
@@ -8200,12 +8193,12 @@ var require(&#x27;source-map&#x27;);
     <li>description and source-code<pre class="apidocCodePre">skip = function (tokenCount) {
     var next = this.currentToken + tokenCount;
 
-    if (next &#x3c; this.tokenCount) {
+    if (next &lt; this.tokenCount) {
         this.currentToken = next;
-        this.tokenStart = this.offsetAndType[next - 1] &#x26; OFFSET_MASK;
+        this.tokenStart = this.offsetAndType[next - 1] &amp; OFFSET_MASK;
         next = this.offsetAndType[next];
-        this.tokenType = next &#x3e;&#x3e; TYPE_OFFSET;
-        this.tokenEnd = next &#x26; OFFSET_MASK;
+        this.tokenType = next &gt;&gt; TYPE_OFFSET;
+        this.tokenEnd = next &amp; OFFSET_MASK;
     } else {
         this.currentToken = this.tokenCount;
         this.next();
@@ -8241,13 +8234,13 @@ var require(&#x27;source-map&#x27;);
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">skipWS = function () {
-    for (var i = this.currentToken, skipTokenCount = 0; i &#x3c; this.tokenCount; i++, skipTokenCount++) {
-        if ((this.offsetAndType[i] &#x3e;&#x3e; TYPE_OFFSET) !== WHITESPACE) {
+    for (var i = this.currentToken, skipTokenCount = 0; i &lt; this.tokenCount; i++, skipTokenCount++) {
+        if ((this.offsetAndType[i] &gt;&gt; TYPE_OFFSET) !== WHITESPACE) {
             break;
         }
     }
 
-    if (skipTokenCount &#x3e; 0) {
+    if (skipTokenCount &gt; 0) {
         this.skip(skipTokenCount);
     }
 }</pre></li>
@@ -8332,9 +8325,9 @@ var require(&#x27;source-map&#x27;);
     <li>description and source-code<pre class="apidocCodePre">eat = function (tokenType) {
     if (this.tokenType !== tokenType) {
         this.error(
-            NAME[tokenType] + &#x27; is expected&#x27;,
+            NAME[tokenType] + ' is expected',
             // when test type is part of another token show error for current position + 1
-            // e.g. eat(HYPHENMINUS) will fail on &#x22;-foo&#x22;, but pointing on &#x22;-&#x22; is odd
+            // e.g. eat(HYPHENMINUS) will fail on "-foo", but pointing on "-" is odd
             this.tokenStart + (this.source.charCodeAt(this.tokenStart) === tokenType ? 1 : 0)
         );
     }
@@ -8380,14 +8373,14 @@ var require(&#x27;source-map&#x27;);
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">error = function (message, offset) {
-    var location = typeof offset !== &#x27;undefined&#x27; &#x26;&#x26; offset &#x3c; this.source.length
+    var location = typeof offset !== 'undefined' &amp;&amp; offset &lt; this.source.length
         ? this.getLocation(offset)
         : this.eof
             ? findLastNonSpaceLocation(this)
             : this.getLocation(this.tokenStart);
 
     throw new CssSyntaxError(
-        message || &#x27;Unexpected input&#x27;,
+        message || 'Unexpected input',
         this.source,
         location.offset,
         location.line,
@@ -8413,7 +8406,7 @@ var require(&#x27;source-map&#x27;);
     <ul>
     <li>description and source-code<pre class="apidocCodePre">expectIdentifier = function (name) {
     if (this.tokenType !== IDENTIFIER || cmpStr(this.source, this.tokenStart, this.tokenEnd, name) === false) {
-        this.error(&#x27;Identifier `&#x27; + name + &#x27;` is expected&#x27;);
+        this.error('Identifier `' + name + '` is expected');
     }
 
     this.next();
@@ -8522,7 +8515,7 @@ var require(&#x27;source-map&#x27;);
     <ul>
     <li>description and source-code<pre class="apidocCodePre">getTypes = function () {
     return Array.prototype.slice.call(this.offsetAndType, 0, this.tokenCount).map(function(item) {
-        return NAME[item &#x3e;&#x3e; TYPE_OFFSET];
+        return NAME[item &gt;&gt; TYPE_OFFSET];
     });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -8545,8 +8538,8 @@ var require(&#x27;source-map&#x27;);
     <li>description and source-code<pre class="apidocCodePre">lookupNonWSType = function (offset) {
     offset += this.currentToken;
 
-    for (var type; offset &#x3c; this.tokenCount; offset++) {
-        type = this.offsetAndType[offset] &#x3e;&#x3e; TYPE_OFFSET;
+    for (var type; offset &lt; this.tokenCount; offset++) {
+        type = this.offsetAndType[offset] &gt;&gt; TYPE_OFFSET;
 
         if (type !== WHITESPACE) {
             return type;
@@ -8575,8 +8568,8 @@ var require(&#x27;source-map&#x27;);
     <li>description and source-code<pre class="apidocCodePre">lookupType = function (offset) {
     offset += this.currentToken;
 
-    if (offset &#x3c; this.tokenCount) {
-        return this.offsetAndType[offset] &#x3e;&#x3e; TYPE_OFFSET;
+    if (offset &lt; this.tokenCount) {
+        return this.offsetAndType[offset] &gt;&gt; TYPE_OFFSET;
     }
 
     return NULL;
@@ -8601,11 +8594,11 @@ var require(&#x27;source-map&#x27;);
     <li>description and source-code<pre class="apidocCodePre">lookupValue = function (offset, referenceStr) {
     offset += this.currentToken;
 
-    if (offset &#x3c; this.tokenCount) {
+    if (offset &lt; this.tokenCount) {
         return cmpStr(
             this.source,
-            this.offsetAndType[offset - 1] &#x26; OFFSET_MASK,
-            this.offsetAndType[offset] &#x26; OFFSET_MASK,
+            this.offsetAndType[offset - 1] &amp; OFFSET_MASK,
+            this.offsetAndType[offset] &amp; OFFSET_MASK,
             referenceStr
         );
     }
@@ -8632,12 +8625,12 @@ var require(&#x27;source-map&#x27;);
     <li>description and source-code<pre class="apidocCodePre">next = function () {
     var next = this.currentToken + 1;
 
-    if (next &#x3c; this.tokenCount) {
+    if (next &lt; this.tokenCount) {
         this.currentToken = next;
         this.tokenStart = this.tokenEnd;
         next = this.offsetAndType[next];
-        this.tokenType = next &#x3e;&#x3e; TYPE_OFFSET;
-        this.tokenEnd = next &#x26; OFFSET_MASK;
+        this.tokenType = next &gt;&gt; TYPE_OFFSET;
+        this.tokenEnd = next &amp; OFFSET_MASK;
     } else {
         this.currentToken = this.tokenCount;
         this.eof = true;
@@ -8666,9 +8659,9 @@ var require(&#x27;source-map&#x27;);
     var start = firstCharOffset(source);
 
     this.source = source;
-    this.startOffset = typeof startOffset === &#x27;undefined&#x27; ? 0 : startOffset;
-    this.startLine = typeof startLine === &#x27;undefined&#x27; ? 1 : startLine;
-    this.startColumn = typeof startColumn === &#x27;undefined&#x27; ? 1 : startColumn;
+    this.startOffset = typeof startOffset === 'undefined' ? 0 : startOffset;
+    this.startLine = typeof startLine === 'undefined' ? 1 : startLine;
+    this.startColumn = typeof startColumn === 'undefined' ? 1 : startColumn;
     this.linesAnsColumnsComputed = false;
 
     this.eof = false;
@@ -8700,12 +8693,12 @@ var require(&#x27;source-map&#x27;);
     <li>description and source-code<pre class="apidocCodePre">skip = function (tokenCount) {
     var next = this.currentToken + tokenCount;
 
-    if (next &#x3c; this.tokenCount) {
+    if (next &lt; this.tokenCount) {
         this.currentToken = next;
-        this.tokenStart = this.offsetAndType[next - 1] &#x26; OFFSET_MASK;
+        this.tokenStart = this.offsetAndType[next - 1] &amp; OFFSET_MASK;
         next = this.offsetAndType[next];
-        this.tokenType = next &#x3e;&#x3e; TYPE_OFFSET;
-        this.tokenEnd = next &#x26; OFFSET_MASK;
+        this.tokenType = next &gt;&gt; TYPE_OFFSET;
+        this.tokenEnd = next &amp; OFFSET_MASK;
     } else {
         this.currentToken = this.tokenCount;
         this.next();
@@ -8751,13 +8744,13 @@ var require(&#x27;source-map&#x27;);
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">skipWS = function () {
-    for (var i = this.currentToken, skipTokenCount = 0; i &#x3c; this.tokenCount; i++, skipTokenCount++) {
-        if ((this.offsetAndType[i] &#x3e;&#x3e; TYPE_OFFSET) !== WHITESPACE) {
+    for (var i = this.currentToken, skipTokenCount = 0; i &lt; this.tokenCount; i++, skipTokenCount++) {
+        if ((this.offsetAndType[i] &gt;&gt; TYPE_OFFSET) !== WHITESPACE) {
             break;
         }
     }
 
-    if (skipTokenCount &#x3e; 0) {
+    if (skipTokenCount &gt; 0) {
         this.skip(skipTokenCount);
     }
 }</pre></li>
@@ -8879,7 +8872,7 @@ var require(&#x27;source-map&#x27;);
     <li>description and source-code<pre class="apidocCodePre">fork = function (extension) {
     var base = mix({}, config); // copy of config
     return createSyntax(
-        typeof extension === &#x27;function&#x27;
+        typeof extension === 'function'
             ? extension(base, assign)
             : mix(base, extension)
     );
@@ -8903,7 +8896,7 @@ var require(&#x27;source-map&#x27;);
     <ul>
     <li>description and source-code<pre class="apidocCodePre">fromPlainObject = function (ast) {
     walk(ast, function(node) {
-        if (node.children &#x26;&#x26; node.children instanceof List === false) {
+        if (node.children &amp;&amp; node.children instanceof List === false) {
             node.children = new List().fromArray(node.children);
         }
     });
@@ -8938,7 +8931,7 @@ var require(&#x27;source-map&#x27;);
         return keywords[keyword] = keywords[name];
     }
 
-    var vendor = !isVariable(name, 0) ? getVendorPrefix(name, 0) : &#x27;&#x27;;
+    var vendor = !isVariable(name, 0) ? getVendorPrefix(name, 0) : '';
 
     return keywords[keyword] = Object.freeze({
         vendor: vendor,
@@ -8972,8 +8965,8 @@ CSSO is based on [CSSTree](https://github.com/csstree/csstree) to parse CSS into
 CSS. All `CSSTree` API is available behind `syntax` field. You may minify CSS step by step:
 
 ```js
-var csso = require(&#x27;csso&#x27;);
-var ast = csso.syntax.<span class="apidocCodeKeywordSpan">parse</span>(&#x27;.test { color: #ff0000; }&#x27;);
+var csso = require('csso');
+var ast = csso.syntax.<span class="apidocCodeKeywordSpan">parse</span>('.test { color: #ff0000; }');
 var compressedAst = csso.compress(ast).ast;
 var minifiedCss = csso.syntax.translate(compressedAst);
 
@@ -9005,14 +8998,14 @@ console.log(minifiedCss);
     var name = property;
     var hack = property[0];
 
-    if (hack === &#x27;/&#x27; &#x26;&#x26; property[1] === &#x27;/&#x27;) {
-        hack = &#x27;//&#x27;;
-    } else if (hack !== &#x27;_&#x27; &#x26;&#x26;
-               hack !== &#x27;*&#x27; &#x26;&#x26;
-               hack !== &#x27;$&#x27; &#x26;&#x26;
-               hack !== &#x27;#&#x27; &#x26;&#x26;
-               hack !== &#x27;+&#x27;) {
-        hack = &#x27;&#x27;;
+    if (hack === '/' &amp;&amp; property[1] === '/') {
+        hack = '//';
+    } else if (hack !== '_' &amp;&amp;
+               hack !== '*' &amp;&amp;
+               hack !== '$' &amp;&amp;
+               hack !== '#' &amp;&amp;
+               hack !== '+') {
+        hack = '';
     }
 
     var variable = isVariable(name, hack.length);
@@ -9024,7 +9017,7 @@ console.log(minifiedCss);
         }
     }
 
-    var vendor = !variable ? getVendorPrefix(name, hack.length) : &#x27;&#x27;;
+    var vendor = !variable ? getVendorPrefix(name, hack.length) : '';
 
     return properties[property] = Object.freeze({
         hack: hack,
@@ -9101,7 +9094,7 @@ console.log(minifiedCss);
     <ul>
     <li>description and source-code<pre class="apidocCodePre">toPlainObject = function (ast) {
     walkUp(ast, function(node) {
-        if (node.children &#x26;&#x26; node.children instanceof List) {
+        if (node.children &amp;&amp; node.children instanceof List) {
             node.children = node.children.toArray();
         }
     });
@@ -9134,8 +9127,8 @@ CSSO is based on [CSSTree](https://github.com/csstree/csstree) to parse CSS into
 CSS. All `CSSTree` API is available behind `syntax` field. You may minify CSS step by step:
 
 ```js
-var csso = require(&#x27;csso&#x27;);
-var ast = csso.syntax.parse(&#x27;.test { color: #ff0000; }&#x27;);
+var csso = require('csso');
+var ast = csso.syntax.parse('.test { color: #ff0000; }');
 var compressedAst = csso.compress(ast).ast;
 var minifiedCss = csso.syntax.<span class="apidocCodeKeywordSpan">translate</span>(compressedAst);
 
@@ -9143,8 +9136,8 @@ console.log(minifiedCss);
 // .test{color:red}
 ```
 
-&#x3e; Warning: CSSO uses early versions of CSSTree that still in active development. CSSO doesn&#x27;t guarantee API behind `syntax
-` field or AST format will not change in future releases of CSSO, since it&#x27;s subject to change in CSSTree. Be carefull with
+&gt; Warning: CSSO uses early versions of CSSTree that still in active development. CSSO doesn't guarantee API behind `syntax
+` field or AST format will not change in future releases of CSSO, since it's subject to change in CSSTree. Be carefull with
  CSSO updates if you use `syntax` API until this warning removal.
 ...</pre></li>
     </ul>
@@ -9169,11 +9162,11 @@ console.log(minifiedCss);
 
         before(node.node, buffer, value);
 
-        if (typeof value === &#x27;string&#x27;) {
+        if (typeof value === 'string') {
             buffer += value;
         } else {
-            for (var i = 0; i &#x3c; value.length; i++) {
-                if (typeof value[i] === &#x27;string&#x27;) {
+            for (var i = 0; i &lt; value.length; i++) {
+                if (typeof value[i] === 'string') {
                     buffer += value[i];
                 } else {
                     buffer = walk(value[i], buffer);
@@ -9186,14 +9179,14 @@ console.log(minifiedCss);
         return buffer;
     }
 
-    if (typeof before !== &#x27;function&#x27;) {
+    if (typeof before !== 'function') {
         before = function() {};
     }
-    if (typeof after !== &#x27;function&#x27;) {
+    if (typeof after !== 'function') {
         after = function() {};
     }
 
-    return walk(context.generate(node), &#x27;&#x27;);
+    return walk(context.generate(node), '');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -9353,21 +9346,21 @@ console.log(minifiedCss);
     <li>description and source-code<pre class="apidocCodePre">function buildIndex(data) {
     var scopes = false;
 
-    if (data.scopes &#x26;&#x26; Array.isArray(data.scopes)) {
+    if (data.scopes &amp;&amp; Array.isArray(data.scopes)) {
         scopes = Object.create(null);
 
-        for (var i = 0; i &#x3c; data.scopes.length; i++) {
+        for (var i = 0; i &lt; data.scopes.length; i++) {
             var list = data.scopes[i];
 
             if (!list || !Array.isArray(list)) {
-                throw new Error(&#x27;Wrong usage format&#x27;);
+                throw new Error('Wrong usage format');
             }
 
-            for (var j = 0; j &#x3c; list.length; j++) {
+            for (var j = 0; j &lt; list.length; j++) {
                 var name = list[j];
 
                 if (hasOwnProperty.call(scopes, name)) {
-                    throw new Error(&#x27;Class can\&#x27;t be used for several scopes: &#x27; + name);
+                    throw new Error('Class can\'t be used for several scopes: ' + name);
                 }
 
                 scopes[name] = i + 1;
@@ -9394,3 +9387,4 @@ console.log(minifiedCss);
     ]
 </div>
 </div>
+</body></html>
