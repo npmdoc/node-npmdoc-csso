@@ -4,8 +4,8 @@
 <tspan x="10" y="26">3 megabytes installed</tspan>
 <tspan x="10" y="42"></tspan>
 <tspan x="10" y="58">node_modules</tspan>
-<tspan x="10" y="74">└─┬ csso@3.0.1 </tspan>
-<tspan x="10" y="90">  └─┬ css-tree@1.0.0-alpha17 </tspan>
+<tspan x="10" y="74">└─┬ csso@3.1.0 </tspan>
+<tspan x="10" y="90">  └─┬ css-tree@1.0.0-alpha19 </tspan>
 <tspan x="10" y="106">    └── source-map@0.5.6</tspan>
 </text>
 </svg>
