@@ -1,4 +1,7 @@
-# api documentation for  [csso (v3.0.1)](https://github.com/css/csso)  [![npm package](https://img.shields.io/npm/v/npmdoc-csso.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-csso) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-csso.svg)](https://travis-ci.org/npmdoc/node-npmdoc-csso)
+# npmdoc-csso
+
+#### basic api documentation for  [csso (v3.1.0)](https://github.com/css/csso)  [![npm package](https://img.shields.io/npm/v/npmdoc-csso.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-csso) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-csso.svg)](https://travis-ci.org/npmdoc/node-npmdoc-csso)
+
 #### CSSO (CSS Optimizer) is a CSS minifier with structural optimisations
 
 [![NPM](https://nodei.co/npm/csso.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/csso)
@@ -26,7 +29,7 @@
         "url": "https://github.com/css/csso/issues"
     },
     "dependencies": {
-        "css-tree": "1.0.0-alpha17"
+        "css-tree": "1.0.0-alpha19"
     },
     "description": "CSSO (CSS Optimizer) is a CSS minifier with structural optimisations",
     "devDependencies": {
@@ -36,13 +39,14 @@
         "istanbul": "^0.4.2",
         "jscs": "~2.10.0",
         "mocha": "~2.4.2",
+        "package-json-versionify": "^1.0.4",
         "source-map": "^0.5.6",
         "uglify-js": "^2.6.1"
     },
     "directories": {},
     "dist": {
-        "shasum": "1469af5ee2ec509addadd8777aa0e45acb6b2f58",
-        "tarball": "https://registry.npmjs.org/csso/-/csso-3.0.1.tgz"
+        "shasum": "1f95c8ea952b25526c3394983edd07f9d41f8bf2",
+        "tarball": "https://registry.npmjs.org/csso/-/csso-3.1.0.tgz"
     },
     "engines": {
         "node": ">=0.10.0"
@@ -73,7 +77,7 @@
         "LICENSE",
         "README.md"
     ],
-    "gitHead": "f3415a2b641a46cdf0f7a4dbd2b1053122597186",
+    "gitHead": "987861666282a97b0fb06321063daeb4a6bb3b6a",
     "homepage": "https://github.com/css/csso",
     "keywords": [
         "css",
@@ -102,7 +106,7 @@
         "url": "git+https://github.com/css/csso.git"
     },
     "scripts": {
-        "browserify": "browserify --standalone csso lib/index.js | uglifyjs --compress --mangle -o dist/csso-browser.js",
+        "browserify": "browserify -t package-json-versionify --standalone csso lib/index.js | uglifyjs --compress --mangle -o dist/csso-browser.js",
         "codestyle": "jscs lib test && eslint lib test",
         "codestyle-and-test": "npm run codestyle && npm test",
         "coverage": "istanbul cover _mocha -- -R dot",
@@ -113,7 +117,8 @@
         "test": "mocha --reporter dot",
         "travis": "npm run codestyle-and-test && npm run coveralls"
     },
-    "version": "3.0.1"
+    "version": "3.1.0",
+    "bin": {}
 }
 ```
 
